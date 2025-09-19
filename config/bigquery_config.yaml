@@ -1,0 +1,45 @@
+# BigQuery Configuration
+# Environment-specific settings for BigQuery deployments
+
+environments:
+  development:
+    project_id: "your-dev-project"
+    dataset: "dev_analytics"
+    location: "US"
+    
+  staging:
+    project_id: "your-staging-project"
+    dataset: "staging_analytics"
+    location: "US"
+    
+  production:
+    project_id: "your-prod-project"
+    dataset: "analytics"
+    location: "US"
+
+# Default settings
+defaults:
+  location: "US"
+  labels:
+    team: "data-engineering"
+    environment: "{{ env }}"
+    project: "mf-data"
+
+# BigQuery specific settings
+bigquery:
+  # Query job configuration
+  job_config:
+    use_legacy_sql: false
+    dry_run: false
+    maximum_bytes_billed: 1000000000  # 1GB limit
+    
+  # View configuration
+  view_config:
+    use_legacy_sql: false
+    
+  # Table configuration  
+  table_config:
+    clustering_fields: []
+    partition_field: null
+    partition_type: null
+    expiration_days: null
